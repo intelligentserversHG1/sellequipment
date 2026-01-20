@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Information - Intelligent Servers</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     
     <style type="text/css">
-        /* Center the form on the standalone page */
+        /* Global Styles */
         body {
             background-color: #f4f4f4;
             display: flex;
@@ -17,7 +18,9 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            font-family: Helvetica, Arial, sans-serif;
+            /* Update 1: Font Family and Base Color */
+            font-family: 'Maven Pro', sans-serif;
+            color: #0C182E;
         }
 
         #mc_embed_shell {
@@ -32,27 +35,47 @@
         #mc_embed_signup {
             background: #fff;
             clear: left;
-            font: 14px Helvetica, Arial, sans-serif;
+            /* Update 2: Ensure Maven Pro is used here */
+            font-family: 'Maven Pro', sans-serif;
         }
 
-        /* Ensure the button is prominent and never hidden */
+        /* Update 3: Headline Styling (Bold, 15px) */
+        #mc_embed_signup h2, 
+        #mc_embed_signup strong {
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            color: #0C182E !important;
+        }
+
+        /* Update 4: Paragraph/Label Styling (12px, Medium Weight) */
+        #mc_embed_signup label, 
+        #mc_embed_signup li, 
+        #mc_embed_signup .indicates-required {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #0C182E !important;
+        }
+
+        /* Update 5: CTA Button Styling */
         #mc_embed_signup .button {
-            background-color: #000 !important; /* Change this to your brand color */
+            background-color: #1DBF84 !important; /* Button Background */
             color: #fff !important;
             height: 45px !important;
             line-height: 45px !important;
             padding: 0 30px !important;
             font-size: 16px !important;
-            font-weight: bold !important;
+            font-weight: bold !important; /* Bold font in button */
+            border-radius: 100px !important; /* 100px rounded corners */
             width: auto !important;
             min-width: 150px;
             margin: 20px 0 !important;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
+        /* Update 6: Button Hover State */
         #mc_embed_signup .button:hover {
-            opacity: 0.8;
+            opacity: 0.85 !important; /* 85% opacity on hover */
         }
 
         /* Responsive adjustments */
@@ -149,8 +172,6 @@
     }(jQuery));
     var $mcj = jQuery.noConflict(true);
 
-    // This script checks if Mailchimp shows the success message.
-    // When it does, it redirects to the requested URL.
     setInterval(function() {
         var successMsg = document.getElementById('mce-success-response');
         if (successMsg && successMsg.style.display === 'block') {
