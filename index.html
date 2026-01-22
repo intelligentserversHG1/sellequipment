@@ -18,7 +18,6 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            /* Update 1: Font Family and Base Color */
             font-family: 'Maven Pro', sans-serif;
             color: #0C182E;
         }
@@ -35,19 +34,26 @@
         #mc_embed_signup {
             background: #fff;
             clear: left;
-            /* Update 2: Ensure Maven Pro is used here */
             font-family: 'Maven Pro', sans-serif;
         }
 
-        /* Update 3: Headline Styling (Bold, 15px) */
+        /* 1. HIDE SUCCESS MESSAGE COMPLETELY */
+        #mce-success-response {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
         #mc_embed_signup h2, 
+        #mc_embed_signup h1,
         #mc_embed_signup strong {
             font-size: 15px !important;
             font-weight: 700 !important;
             color: #0C182E !important;
         }
 
-        /* Update 4: Paragraph/Label Styling (12px, Medium Weight) */
         #mc_embed_signup label, 
         #mc_embed_signup li, 
         #mc_embed_signup .indicates-required {
@@ -56,16 +62,15 @@
             color: #0C182E !important;
         }
 
-        /* Update 5: CTA Button Styling */
         #mc_embed_signup .button {
-            background-color: #1DBF84 !important; /* Button Background */
+            background-color: #1DBF84 !important;
             color: #fff !important;
             height: 45px !important;
             line-height: 45px !important;
             padding: 0 30px !important;
             font-size: 16px !important;
-            font-weight: bold !important; /* Bold font in button */
-            border-radius: 100px !important; /* 100px rounded corners */
+            font-weight: bold !important;
+            border-radius: 100px !important;
             width: auto !important;
             min-width: 150px;
             margin: 20px 0 !important;
@@ -73,16 +78,12 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Update 6: Button Hover State */
         #mc_embed_signup .button:hover {
-            opacity: 0.85 !important; /* 85% opacity on hover */
+            opacity: 0.85 !important;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 600px) {
-            #mc_embed_shell {
-                padding: 10px;
-            }
+            #mc_embed_shell { padding: 10px; }
         }
     </style>
 </head>
@@ -94,7 +95,6 @@
             <div id="mc_embed_signup_scroll">
                 <h1>Get a price for your old kit</h1>
               
-                
                 <div class="mc-field-group input-group">
                     <strong>Do you have any equipment you're looking to sell?</strong>
                     <ul>
@@ -172,12 +172,20 @@
     }(jQuery));
     var $mcj = jQuery.noConflict(true);
 
-    setInterval(function() {
-        var successMsg = document.getElementById('mce-success-response');
-        if (successMsg && successMsg.style.display === 'block') {
-            window.location.href = "https://intelligentservers.co.uk/thank-you";
-        }
-    }, 500);
+    // 2. INSTANT REDIRECT SCRIPT (NO DELAY, NO MESSAGE)
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            var successMsg = document.getElementById('mce-success-response');
+            if (successMsg && (successMsg.style.display === 'block' || window.getComputedStyle(successMsg).display !== 'none')) {
+                window.location.href = "https://intelligentservers.co.uk/thank-you";
+            }
+        });
+    });
+
+    var target = document.getElementById('mce-responses');
+    if (target) {
+        observer.observe(target, { attributes: true, childList: true, characterData: true, subtree: true });
+    }
 </script>
 
 </body>
